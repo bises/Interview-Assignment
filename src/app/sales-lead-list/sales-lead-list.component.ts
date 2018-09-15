@@ -10,11 +10,15 @@ export class SalesLeadListComponent implements OnInit {
 
   public settings = {    
     hideHeader: false,
-    attr: { class: "table-responsive" },
+    hideSubHeader: true,
+    attr: { class: "table" },
     actions: {
-      edit: false, 
-      delete: false,
-      position: "right"
+      columnTitle: '',
+      edit: false,
+      add: false,
+      delete : false,
+      custom: [{ name: "delete", title: "<i class='fa fa-close'></i>"}],
+      position: "right"      
     },
     columns: {
       id: {
@@ -30,7 +34,10 @@ export class SalesLeadListComponent implements OnInit {
         filter: false
       }
     },
-    pager: { perPage: 2 }
+    pager: { 
+      perPage: 3,
+      display: true
+   }
   };
   public characters: any;
   constructor() {
