@@ -4,7 +4,7 @@
         <small *ngIf="source">{{getNumberOfDisplayedElement()}}</small>
     </header>
     <div class="section-body">
-        <button class="btn btn-primary pull-right mb-3" (click)="addNewItem()">Add</button>
+        <button class="btn btn-primary btn-sm pull-right mb-3" (click)="addNewItem()">Add</button>
         <div *ngIf=!isLoading>
             <ng2-smart-table 
                 [settings]="settings" 

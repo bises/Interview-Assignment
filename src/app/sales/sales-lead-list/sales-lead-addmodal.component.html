@@ -43,11 +43,11 @@
                 </div>
         </div>
         <div class="modal-footer">
-            <button class="btn" type="button" (click)="_modal.dismiss()">
-                <span>Back</span>
-            </button>
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-primary btn-sm" type="submit" [disabled]="createForm.invalid">
                 <span>Save</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" type="button" (click)="_modal.dismiss()">
+                <span>Back</span>
             </button>
         </div>    
     </form>

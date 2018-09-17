@@ -4,3 +4,55 @@
 h1 {
     font-weight: 100;
 }
+.btn{    
+    min-width: 100px;
+}
+.btn-primary{
+    background-color: #1CA9B6;
+    border-color: #1CA9B6;
+}
+
+ng2-smart-table-pager {
+    margin-left: 40%;
+    margin-right: 60%;
+    margin-top: 50px;
+}
+
+.page-link{
+    border: 0;
+    color: black
+}
+
+.page-item.active .page-link{
+    background-color: white;
+    color: black;
+    font-weight: 800;
+}
+
+a.ng2-smart-page-link.page-link{
+    color: black;
+    text-decoration: none;
+}
+
+.ng2-smart-pagination[_ngcontent-c4] .page-link-prev[_ngcontent-c4] > span{
+    font-size: 2em;
+    color: #1CA9B6;
+}
+
+.ng2-smart-pagination[_ngcontent-c4] .page-link-prev[_ngcontent-c4]{
+    margin-top: -5px;
+}
+
+.ng2-smart-pagination[_ngcontent-c4] .page-link-next[_ngcontent-c4] > span{
+    font-size: 2em;
+    color: #1CA9B6;
+}
+
+.ng2-smart-pagination[_ngcontent-c4] .page-link-next[_ngcontent-c4] {
+    margin-top: -5px;
+}
+
+li.ng2-smart-page-item.page-item.disabled > a.ng2-smart-page-link.page-link > span {
+    color: grey;
+}
+

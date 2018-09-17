@@ -18,7 +18,7 @@ export class SalesLeadListComponent implements OnInit {
   public modal: NgbModalRef;
   public settings = {    
     hideSubHeader: true,
-    attr: { class: "table" },
+    attr: { class: "table table-striped" },
     actions: {
       columnTitle: '',
       edit: false,
@@ -56,7 +56,8 @@ export class SalesLeadListComponent implements OnInit {
     },
     pager: { 
       perPage: 5,
-      display: true
+      display: true,
+      attr: {style: "background-color: red"}
    }
   };
   public source: LocalDataSource;
@@ -85,8 +86,10 @@ export class SalesLeadListComponent implements OnInit {
         // data.date = this._datePipe.transform(data.date,"MM/dd/yyyy");
         this.rawData.push(data);
         this.source = new LocalDataSource(this.rawData);
-        this._toastr.success("Successfully added new Sales Lead",null,{
-          positionClass: 'toast-top-center'
+        this._toastr.info("Successfully added",null,{
+          positionClass: 'toast-top-center',
+          timeOut: 2000,
+          progressBar: true
         });
       }));
   }
