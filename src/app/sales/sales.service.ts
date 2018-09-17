@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
+import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable"
 import "rxjs/add/operator/map";
 
@@ -12,5 +12,18 @@ export class SalesService {
     public getSalesLeadList(): any{
         return this._http.get(this.salesApiRoute)
              .map((response: Response) => response.json());
+    }
+
+    public addSalesLead(salesLeadObj: any): Observable<any>{
+        let jsonData = JSON.stringify(salesLeadObj);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post(this.salesApiRoute, jsonData, options)
+        .map((response: Response) => response.json);
+    }
+
+    private handleError(error: Response) {
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server Error');
     }
 }

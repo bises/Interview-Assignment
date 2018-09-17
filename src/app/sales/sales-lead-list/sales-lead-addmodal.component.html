@@ -1,5 +1,54 @@
-<div class="modal-header">
-    <h3 class="modal-title">
-        <span>{{message}}</span>
-    </h3>
+<div *ngIf = "!isLoading">
+    <div class="modal-header">
+        <h3 class="modal-title">
+            <span>{{title}}</span>
+        </h3>
+    </div>
+    <form [formGroup]="createForm" (ngSubmit)=addSalesLead(createForm)>
+        <div class="modal-body">
+                <div class="form-group has-error">
+                    <input type="text" class="form-control" placeHolder="Leads" formControlName="lead">
+                    <small class="text-danger" 
+                    *ngIf="createForm.controls.lead.invalid && createForm.controls.lead.touched">
+                        *Lead is required
+                    </small>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeHolder="Sales Representative" formControlName="rep">
+                    <small class="text-danger" 
+                    *ngIf="createForm.controls.rep.invalid && createForm.controls.rep.touched">
+                        *Sales Representative is required
+                    </small>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeHolder="Clients" formControlName="client">
+                    <small class="text-danger" 
+                    *ngIf="createForm.controls.client.invalid && createForm.controls.client.touched">
+                        *Clients is required
+                    </small>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" placeHolder="Value" formControlName="value">
+                    <small class="text-danger" 
+                    *ngIf="createForm.controls.value.invalid && createForm.controls.value.touched">
+                        *Value is required
+                    </small>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" placeHolder="Date" formControlName="date">
+                    <small class="text-danger" 
+                    *ngIf="createForm.controls.date.invalid && createForm.controls.date.touched">
+                        *Date is required
+                    </small>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" (click)="_modal.dismiss()">
+                <span>Back</span>
+            </button>
+            <button class="btn btn-primary" type="submit">
+                <span>Save</span>
+            </button>
+        </div>    
+    </form>
 </div>

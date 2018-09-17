@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 import { LocalDataSource } from 'ng2-smart-table';
 import { SalesService } from "../sales.service"
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { AddSalesLeadModalComponent } from './sales-lead-addmodal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sales-lead-list',
@@ -15,7 +17,6 @@ export class SalesLeadListComponent implements OnInit {
   public rawData: any[];
   public modal: NgbModalRef;
   public settings = {    
-    hideHeader: false,
     hideSubHeader: true,
     attr: { class: "table" },
     actions: {
@@ -40,10 +41,17 @@ export class SalesLeadListComponent implements OnInit {
         filter: false
       },
       value: {
-        title: 'Value'
+        title: 'Value',
+        position: "right",
+        valuePrepareFunction: (value) =>  {
+          return this._currPipe.transform(value,"USD",true,"1.0-0");
+        }
       },
       date: {
-        title: 'Date'
+        title: 'Date',
+        valuePrepareFunction: (value) =>  {
+          return this._datePipe.transform(value, "MM/dd/yyyy")
+        }
       }
     },
     pager: { 
@@ -52,9 +60,13 @@ export class SalesLeadListComponent implements OnInit {
    }
   };
   public source: LocalDataSource;
+
   constructor(
     private _salesService: SalesService,
-    private _modalService: NgbModal
+    private _modalService: NgbModal,
+    private _datePipe: DatePipe,
+    private _currPipe: CurrencyPipe,
+    private _toastr: ToastrService
     ) { 
    }
 
@@ -62,16 +74,35 @@ export class SalesLeadListComponent implements OnInit {
     this.isLoading = true;
     this._salesService.getSalesLeadList().subscribe((salesList) => {
       this.rawData = salesList.payload;
-      this.source = new LocalDataSource(salesList.payload);
+      this.source = new LocalDataSource(this.rawData);
       this.isLoading = false;
     });
   }
 
   public addNewItem(event: any){
-    // this.source.remove()
-    this._modalService.open(AddSalesLeadModalComponent);
-    this.rawData.pop();
-    this.source = new LocalDataSource(this.rawData);
+    this._modalService.open(AddSalesLeadModalComponent).result.then(
+      (data: any) => this._salesService.addSalesLead(data).subscribe((response) => {
+        // data.date = this._datePipe.transform(data.date,"MM/dd/yyyy");
+        this.rawData.push(data);
+        this.source = new LocalDataSource(this.rawData);
+        this._toastr.success("Successfully added new Sales Lead",null,{
+          positionClass: 'toast-top-center'
+        });
+      }));
+  }
+
+  private onDelete(event: any){
+    console.log(event.source.getPaging().page);
+  }
+
+  private getNumberOfDisplayedElement(){ 
+    let dataCount = this.rawData.length;   
+    let perPage = this.source.getPaging().perPage;
+    let numberOfPages = Math.ceil(dataCount/perPage);
+    let pageNumber = this.source.getPaging().page;
+    let startCount = perPage * (pageNumber - 1) + 1;
+    let endCount = startCount + (pageNumber === numberOfPages ? (dataCount % perPage) === 0 ? perPage : (dataCount % perPage) : perPage) - 1;
+    return `Showing ${startCount}-${endCount} of ${dataCount}`;
   }
 
 }
