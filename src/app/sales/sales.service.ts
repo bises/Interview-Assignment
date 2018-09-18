@@ -19,7 +19,7 @@ export class SalesService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this._http.post(this.salesApiRoute, jsonData, options)
-        .map((response: Response) => response.json);
+        .map((response: Response) => response.json);        
     }
 
     private handleError(error: Response) {

@@ -44,7 +44,7 @@ export class SalesLeadListComponent implements OnInit {
         title: 'Value',
         position: "right",
         valuePrepareFunction: (value) =>  {
-          return this._currPipe.transform(value,"USD",true,"1.0-0");
+          return this._currPipe.transform(value,"USD","symbol","1.0-0");
         }
       },
       date: {
@@ -56,8 +56,7 @@ export class SalesLeadListComponent implements OnInit {
     },
     pager: { 
       perPage: 5,
-      display: true,
-      attr: {style: "background-color: red"}
+      display: true
    }
   };
   public source: LocalDataSource;
@@ -77,25 +76,28 @@ export class SalesLeadListComponent implements OnInit {
       this.rawData = salesList.payload;
       this.source = new LocalDataSource(this.rawData);
       this.isLoading = false;
-    });
+    }),
+    (error: any) => console.error(error);
   }
 
   public addNewItem(event: any){
     this._modalService.open(AddSalesLeadModalComponent).result.then(
       (data: any) => this._salesService.addSalesLead(data).subscribe((response) => {
-        // data.date = this._datePipe.transform(data.date,"MM/dd/yyyy");
         this.rawData.push(data);
+        let sort = this.source.getSort()
         this.source = new LocalDataSource(this.rawData);
+        this.source.setSort(sort);
         this._toastr.info("Successfully added",null,{
           positionClass: 'toast-top-center',
           timeOut: 2000,
           progressBar: true
-        });
+        }),
+        (error: any) => console.error(error);
       }));
   }
 
   private onDelete(event: any){
-    console.log(event.source.getPaging().page);
+    alert('Delete functionality not implemented');
   }
 
   private getNumberOfDisplayedElement(){ 

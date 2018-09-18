@@ -13,6 +13,7 @@ import { SalesService } from "./sales/sales.service"
 import { AddSalesLeadModalComponent } from "./sales/sales-lead-list/sales-lead-addmodal.component";
 import { ToastrModule  } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingBarHttpModule } from '@ngx-loading-bar/http';
 
 @NgModule({  
   imports: [
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    LoadingBarHttpModule,
     ToastrModule.forRoot()  
   ],
   declarations: [

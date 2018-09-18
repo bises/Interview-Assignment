@@ -5,7 +5,7 @@
     </header>
     <div class="section-body">
         <button class="btn btn-primary btn-sm pull-right mb-3" (click)="addNewItem()">Add</button>
-        <div *ngIf=!isLoading>
+        <div *ngIf=!isLoading class="table-responsive">
             <ng2-smart-table 
                 [settings]="settings" 
                 [source]="source"

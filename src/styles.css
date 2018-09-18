@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+body{
+    background-color: #f1f1f1;
+}
+.template-content{
+    background-color: white;
+}
 h1 {
     font-weight: 100;
 }
@@ -10,6 +16,12 @@ h1 {
 .btn-primary{
     background-color: #1CA9B6;
     border-color: #1CA9B6;
+}
+
+.btn:disabled{
+    background-color: #f1f1f1;
+    border-color: #f1f1f1;
+    color: black;
 }
 
 ng2-smart-table-pager {
@@ -34,25 +46,116 @@ a.ng2-smart-page-link.page-link{
     text-decoration: none;
 }
 
-.ng2-smart-pagination[_ngcontent-c4] .page-link-prev[_ngcontent-c4] > span{
-    font-size: 2em;
-    color: #1CA9B6;
-}
-
-.ng2-smart-pagination[_ngcontent-c4] .page-link-prev[_ngcontent-c4]{
+.page-link-next, .page-link-prev {
     margin-top: -5px;
 }
 
-.ng2-smart-pagination[_ngcontent-c4] .page-link-next[_ngcontent-c4] > span{
+a.page-link-next > span, a.page-link-prev > span {
     font-size: 2em;
     color: #1CA9B6;
-}
-
-.ng2-smart-pagination[_ngcontent-c4] .page-link-next[_ngcontent-c4] {
-    margin-top: -5px;
 }
 
 li.ng2-smart-page-item.page-item.disabled > a.ng2-smart-page-link.page-link > span {
     color: grey;
 }
+
+ul.d-navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li.d-navbar-list-link {
+    float: left;
+}
+
+li.d-navbar-list-link a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.right-item{
+    float: right !important;
+}
+
+li.d-navbar-list-link a:hover {
+    background-color: #111;
+}
+
+.nav-brand{
+    margin-right: 3%;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 10%;
+    background-color: #4C4646;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+
+  .sidebar a.active {
+    background-color: #1589FF;
+    color: white;
+    margin-right: -10px;
+  }  
+
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  .container-fluid {
+    margin-left: 12%;
+    width: 85%
+  }
+
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      display: none
+    }
+    .container-fluid {
+        margin-left: 5%
+    }
+
+    li.d-navbar-list-link {
+        display: none;
+    }
+
+    .nav-brand, .right-item {
+        display: initial !important;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    .sidebar a {
+      font-size: 0.75em
+    }
+
+    .nav-brand{
+        margin-right: 2%;
+    }
+
+    li.d-navbar-list-link a {
+        font-size: 0.70em;
+    }
+  }
+
+  .ng2-smart-sort-link {
+      color: black !important;
+  }
 

@@ -1,4 +1,26 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="container">
-  <app-sales-lead-list></app-sales-lead-list>
+<nav>
+    <ul class="d-navbar">
+        <li class="d-navbar-list-link nav-brand"><a href="#home">dynatrace</a></li>
+        <li class="d-navbar-list-link"><a href="#home">Solutions & pricing</a></li>
+        <li class="d-navbar-list-link"><a href="#news">Why Dynatrace</a></li>
+        <li class="d-navbar-list-link"><a href="#contact">Company</a></li>
+        <li class="d-navbar-list-link"><a href="#contact">News & resources</a></li>
+        <li class="d-navbar-list-link"><a href="#contact">Support</a></li>
+        <li class="d-navbar-list-link right-item"><a class="active" href="#about">Dynatrace Saas Login</a></li>
+    </ul>
+</nav>
+
+<div class="sidebar pt-5">
+    <div><a class="active" href="#home">Sales Leads</a></div>
+    <div><a href="#news">Contact</a></div>
+    <div><a href="#contact">Calendar</a></div>
+    <div></div><a href="#about">Reports</a>
+</div>
+
+
+<div class="container-fluid mt-5">
+    <div class="template-content pr-3 pl-3 pt-3">
+        <ngx-loading-bar></ngx-loading-bar>
+        <app-sales-lead-list></app-sales-lead-list>
+    </div>
 </div>
